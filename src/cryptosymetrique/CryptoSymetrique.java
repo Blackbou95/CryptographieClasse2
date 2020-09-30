@@ -18,7 +18,11 @@ public class CryptoSymetrique {
        //new KeyGeneration().keygeneration("./essai.key");
         
         Chiffrement chiffrement = new Chiffrement();
-        chiffrement.Process("./diodio.pdf","./ndeye.key",null);
+        chiffrement.runCipher("./essai.key","./test.txt","./resultat.txt");
+        Dechiffrement dechiffrement = new  Dechiffrement();
+         dechiffrement.runCipher("./essai.key","./resultat.txt","./resultat1.txt");
+        
+                
     }
     
 }
