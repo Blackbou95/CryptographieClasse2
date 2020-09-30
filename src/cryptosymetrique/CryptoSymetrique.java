@@ -18,9 +18,9 @@ public class CryptoSymetrique {
        //new KeyGeneration().keygeneration("./essai.key");
         
         Chiffrement chiffrement = new Chiffrement();
-        chiffrement.runCipher("./essai.key","./test.txt","./resultat.txt");
+        chiffrement.runCipher("./essai.key","./IbrahimaBaAnne.txt","./_IbrahimaBaAnne.txt");
         Dechiffrement dechiffrement = new  Dechiffrement();
-         dechiffrement.runCipher("./essai.key","./resultat.txt","./resultat1.txt");
+         dechiffrement.runCipher("./essai.key","./_IbrahimaBaAnne.txt","./D_IbrahimaBaAnne.txt");
         
                 
     }
