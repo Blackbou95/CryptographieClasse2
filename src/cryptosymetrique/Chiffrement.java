@@ -39,6 +39,21 @@ public class Chiffrement implements IChiffrement {
         } 
         return null;
     }
+    
+    @Override
+    public Cipher getCipherByPassWord(String mdp) {
+        KeyGeneration gen = new KeyGeneration();
+        SecretKey key = gen.genkeyPass(mdp);
+        try {
+            Cipher c = Cipher.getInstance(ICryptoConfig.trans);
+            c.init(Cipher.ENCRYPT_MODE,key, new IvParameterSpec(ICryptoConfig.iv.getBytes()));
+            return c;
+                    
+        } catch (Exception ex) {
+            Logger.getLogger(Chiffrement.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+        return null;
+    }
 
     @Override
     public boolean Process(String fileToEncrypt, String fileDest, Cipher cipher) {
@@ -64,11 +79,20 @@ public class Chiffrement implements IChiffrement {
         }
         return false;
     }
+    
+    
 
     @Override
     public boolean runCipher(String keyFile, String fileToEncrypt, String fileDest) {
         Cipher c = this.getCipher(keyFile);
         return this.Process(fileToEncrypt, fileDest, c);
     }
+    
+    @Override
+    public boolean runCipherByPass(String mbp, String fileToEncrypt, String fileDest) {
+        Cipher c = this.getCipherByPassWord(mbp);
+        return this.Process(fileToEncrypt, fileDest, c);
+    }
+    
     
 }

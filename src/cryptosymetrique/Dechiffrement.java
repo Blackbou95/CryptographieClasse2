@@ -33,4 +33,19 @@ public class Dechiffrement extends Chiffrement{
         return null;
     }
     
+    @Override
+    public Cipher getCipherByPassWord(String mdp) {
+        KeyGeneration gen = new KeyGeneration();
+        SecretKey key = gen.genkeyPass(mdp);
+        try {
+            Cipher c = Cipher.getInstance(ICryptoConfig.trans);
+            c.init(Cipher.DECRYPT_MODE,key, new IvParameterSpec(ICryptoConfig.iv.getBytes()));
+            return c;
+                    
+        } catch (Exception ex) {
+            Logger.getLogger(Chiffrement.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+        return null;
+    }
+    
 }

@@ -18,6 +18,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
+import javax.crypto.SecretKeyFactory;
+import javax.crypto.spec.PBEKeySpec;
+import javax.crypto.spec.SecretKeySpec;
 
 /**
  *
@@ -43,8 +46,6 @@ public class KeyGeneration implements IKeyGeneration {
         return null;
     }
       
-    
-
     @Override
     public boolean savekey(String FilePath, SecretKey key) {
         try {
@@ -57,8 +58,6 @@ public class KeyGeneration implements IKeyGeneration {
             
         } catch (Exception ex) {
             Logger.getLogger(KeyGeneration.class.getName()).log(Level.SEVERE, null, ex);
-        
-        
     }
         return false;
 
@@ -77,6 +76,32 @@ public class KeyGeneration implements IKeyGeneration {
             Logger.getLogger(KeyGeneration.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
+    }
+
+    @Override
+    public SecretKey genkeyPass(String mdp) {
+       SecretKey clepbe=null;
+        //on appelle Transforme le mot de passe en tableau de Char
+        char[] password = mdp.toCharArray();
+        PBEKeySpec pbe = new PBEKeySpec(password, ICryptoConfig.salt, ICryptoConfig.ieration, ICryptoConfig.keysize);
+        //on vide le tableau de char password
+        mdp="";
+	for (int j = 0; j < password.length; j++) {
+		password[j] = 0;
+	}
+	try {  
+         //on appelle le KDF: PBEKeySpec pour construire une clé
+         //KDF: Key Derivation Function
+          SecretKeyFactory kdfFactory = SecretKeyFactory.getInstance(ICryptoConfig.kdf);
+          SecretKey keyPBE = kdfFactory.generateSecret(pbe);
+          clepbe=new SecretKeySpec(keyPBE.getEncoded(), ICryptoConfig.algo);
+			
+       } catch (Exception e) {
+	     // TODO Auto-generated catch block
+	      e.printStackTrace();
+       }
+                
+       return clepbe;
     }
 
     

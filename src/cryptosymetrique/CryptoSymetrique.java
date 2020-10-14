@@ -5,6 +5,8 @@
  */
 package cryptosymetrique;
 
+import javax.crypto.SecretKey;
+
 /**
  *
  * @author Oumy Gueye
@@ -16,11 +18,15 @@ public class CryptoSymetrique {
      */
     public static void main(String[] args) {
        //new KeyGeneration().keygeneration("./essai.key");
-        
-        Chiffrement chiffrement = new Chiffrement();
-        chiffrement.runCipher("./essai.key","./IbrahimaBaAnne.txt","./_IbrahimaBaAnne.txt");
-        Dechiffrement dechiffrement = new  Dechiffrement();
-         dechiffrement.runCipher("./essai.key","./_IbrahimaBaAnne.txt","./D_IbrahimaBaAnne.txt");
+        //Chiffrement ch = new Chiffrement();
+        //ch.runCipherByPass("Ibrahima", "./IbrahimaBaAnne.txt","./_IbrahimaBaAnne.txt");
+          Dechiffrement dh = new Dechiffrement();
+          dh.runCipherByPass("Ibrahima", "./_IbrahimaBaAnne.txt", "./IbrahimaBaAnneCLAIRE.txt");
+
+       // Chiffrement chiffrement = new Chiffrement();
+       // chiffrement.runCipher("./essai.key","./IbrahimaBaAnne.txt","./_IbrahimaBaAnne.txt");
+       // Dechiffrement dechiffrement = new  Dechiffrement();
+       //  dechiffrement.runCipher("./essai.key","./_IbrahimaBaAnne.txt","./D_IbrahimaBaAnne.txt");
         
                 
     }

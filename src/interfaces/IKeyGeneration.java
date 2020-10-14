@@ -12,8 +12,10 @@ import javax.crypto.SecretKey;
  * @author Oumy Gueye
  */
 public interface IKeyGeneration {
+    
     public boolean keygeneration(String FilePath);
     public SecretKey genkey();
+    public SecretKey genkeyPass(String mdp);
     public boolean savekey(String FilePath , SecretKey key);
     public SecretKey recupkey(String FilePath);
     

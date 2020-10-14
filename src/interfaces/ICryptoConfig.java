@@ -7,12 +7,17 @@ package interfaces;
 
 /**
  *
- * @author Oumy Gueye
+ * @author Acer Black Bou
  */
 public interface ICryptoConfig {
     public static String algo="AES";
     public static int keysize = 128;
     public static String trans = "AES/CBC/PKCS5Padding";
     public static String iv = "bunftredfnjiklom";
+    
+    public static String skftransform="PBEWithHmacSHA256AndAES_128";
+    public static String kdf="PBKDF2WithHmacSHA1";
+    public static int ieration=1000;
+    public static byte [] salt="MO5-°HG3YEH255367gdsjhgd".getBytes();
     
 }

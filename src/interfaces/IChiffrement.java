@@ -13,7 +13,9 @@ import javax.crypto.Cipher;
  */
 public interface IChiffrement {
     public Cipher getCipher(String keyFile);
+    public Cipher getCipherByPassWord(String mdp);
     public boolean Process(String fileToEncrypt,String fileDest,Cipher cipher);
     public boolean runCipher(String keyFile,String fileToEncrypt,String fileDest);
+    public boolean runCipherByPass(String mbp, String fileToEncrypt, String fileDest);
     
 }
